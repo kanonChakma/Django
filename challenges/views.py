@@ -16,7 +16,7 @@ challenges = {
     "september": "<h2>This is september challenges</h2>",
     "october":"<h2>This is october challnges</h2>",
     "november": "<h2>This is november challenges</h2>",
-    "december": "<h2>This is december challenges</h2>"
+    "december": None
 }
 
 # Create your views here.
@@ -31,14 +31,15 @@ def monthly_challange_ny_number(request, month):
 
 def show_month(request):
     months = list(challenges.keys())
-    month_list = ""
-    for month in months:
-        capitalized_month = month.capitalize()
-        redirect_path = reverse("monthly_challenge",args=[month])
-        month_list += f"<li><a href=\"{redirect_path}\"><h3>{capitalized_month}</h3></a><li>"
+    return render(request, "challenges/index.html",{"month_list": months})
+    # month_list = ""
+    # for month in months:
+    #     capitalized_month = month.capitalize()
+    #     redirect_path = reverse("monthly_challenge",args=[month])
+    #     month_list += f"<li><a href=\"{redirect_path}\"><h3>{capitalized_month}</h3></a><li>"
 
-    show_list = f"<ul>{month_list}</ul>"
-    return HttpResponse(show_list)
+    # show_list = f"<ul>{month_list}</ul>"
+    # return HttpResponse(show_list)
 
 
 def monthly_challenge(request, month):
@@ -46,7 +47,7 @@ def monthly_challenge(request, month):
         challenge_response = challenges[month]
         return render(request, "challenges/challenge.html",{
             "text": challenge_response,
-            "month_name": month.capitalize() 
+            "month_name": month
         })
         # response_data = render_to_string("challenges/challenge.html")
         # return HttpResponse(response_data)
