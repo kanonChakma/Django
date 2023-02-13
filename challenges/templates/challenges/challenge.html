@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+<span />
+{% block page_title%} All Challenges {% endblock %}
+
+<span />
+{% block content%}
+<span />
+{% include "./includes/header.html" with active_page="Challages"%}
+<h1>{{month_name | title}} Challenge</h1>
+{% if text %}
+<h3>{{text}}</h3>
+{% else %}
+<h3>There is no event</h3>
+{% endif %}
+<span />
+{% endblock %}
+
+<span />
