@@ -1,4 +1,4 @@
-from django.http import (HttpResponse, HttpResponseNotFound,
+from django.http import (Http404, HttpResponse, HttpResponseNotFound,
                          HttpResponseRedirect)
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
@@ -52,7 +52,9 @@ def monthly_challenge(request, month):
         # response_data = render_to_string("challenges/challenge.html")
         # return HttpResponse(response_data)
     except:
-        return HttpResponseNotFound("This is not recommended") 
+        # return Http404() WILL SHOW ERROR IN DEVELOPMENT SERVER
+        response_data = render_to_string("404.html")
+        return HttpResponseNotFound(response_data) 
 
 def challenge_january(request):
     return HttpResponse("<h3>This is January Challanges</h3>")
