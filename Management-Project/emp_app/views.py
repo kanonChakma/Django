@@ -30,10 +30,20 @@ def add_emp(request):
        return HttpResponse("Employee not added") 
 
     
-
-
-def remove_emp(request):
-    return render(request, 'emp_app/remove_emp.html')
+def remove_emp(request, emp_id=0):
+    if emp_id:
+        try:
+            remove_id = Employee.objects.get(id= emp_id)
+            remove_id.delete()
+            return HttpResponse("Successfully deleted")
+        except:
+            return HttpResponse("something was wrong!!!")
+    
+    emps = Employee.objects.all()
+    context = {
+        'emps': emps
+    }
+    return render(request, 'emp_app/remove_emp.html', context)
 
 def view_emp(request):
     emps = Employee.objects.all()
