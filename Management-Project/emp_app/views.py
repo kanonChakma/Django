@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -54,5 +55,26 @@ def view_emp(request):
     return render(request, 'emp_app/view_emp.html',context)
 
 def filter_emp(request):
+    if request.method == 'POST':
+        emps = Employee.objects.all()
+        name = request.POST['name']
+        dept = request.POST['dept']
+        role = request.POST['role']
+        if name:
+            emps = emps.filter(Q(first_name__icontains = name)|Q(last_name__icontains = name))
+        if dept:
+            emps = emps.filter(dept__name__icontains = dept)
+        if role:
+            emps = emps.filter(role__name__icontains = role)
+        
+        context = {
+            'emps': emps
+        }
+
+        return render(request, 'emp_app/filter_emp.html', context)
     return render(request, 'emp_app/filter_emp.html')
+ 
+
+
+
  
