@@ -1,0 +1,10 @@
+h1{
+    color: orange;
+    text-align: center;
+}
+.inside{
+    border: 1px solid rgb(255, 97, 97);
+    height: 700px;
+    padding: 10px;
+    margin: 2rem auto;
+}
