@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 <span />
-
 {% load static %}
 <span />
 
-{% block page_title %} kanon_blog {% endblock %}
+{% block page_title %} kanon_blog {% endblock %} {% block css_files %}
+<link rel="stylesheet" href="{% static 'blog/index.css' %}" />
+{% endblock %}
 <span />
 
 {% block content%}
-<h2>Welcome to my blog</h2>
-<header>
+<header id="main-navigation">
   <h1><a href="">Kanon's Blog</a></h1>
   <nav>
     <a href="">All Posts</a>
@@ -20,8 +20,8 @@
   <header>
     <img src="" alt="image" />
     <h2>ANOTHER BLOG</h2>
-    <p>Hi ther is nothing to do in my life brother</p>
   </header>
+  <p>Hi ther is nothing to do in my life brother</p>
 </section>
 
 <section id="latest-posts">
